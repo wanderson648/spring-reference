@@ -1,29 +1,30 @@
 package com.devsuperior.dslarn.entities;
 
+import com.devsuperior.dslarn.entities.enums.ResourceType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_course")
-public class Course {
+@Table(name = "tb_resource")
+public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
+    private String description;
+    private Integer position;
     private String imgUri;
-    private String imgGrayUri;
+    private ResourceType type;
 
-    @OneToMany(mappedBy = "course")
-    private List<Offer> offers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
+    private Offer offer;
 }
