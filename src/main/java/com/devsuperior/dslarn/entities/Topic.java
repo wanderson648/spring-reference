@@ -44,6 +44,10 @@ public class Topic {
     @JoinColumn(name = "reply_id")
     private Reply answer;
 
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
+    private Offer offer;
+
     @ManyToMany
     @JoinTable(name = "tb_topic_likes",
             joinColumns = @JoinColumn(name = "topic_id"),
